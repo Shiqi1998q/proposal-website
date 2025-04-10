@@ -4,7 +4,7 @@ const content = document.getElementById('content');
 const body = document.body;
 const celebrationMusic = document.getElementById('celebrationMusic');
 
-yesButton.addEventListener('click', function() {
+yesButton.addEventListener('click', function () {
     // 创建一个自定义的弹窗元素
     const customAlert = document.createElement('div');
     customAlert.classList.add('custom-alert');
@@ -18,7 +18,7 @@ yesButton.addEventListener('click', function() {
 
     // 为关闭按钮添加点击事件
     const closeButton = customAlert.querySelector('.custom-alert-close');
-    closeButton.addEventListener('click', function() {
+    closeButton.addEventListener('click', function () {
         customAlert.remove();
     });
 
@@ -28,7 +28,7 @@ yesButton.addEventListener('click', function() {
     celebrationMusic.play();
 });
 
-noButton.addEventListener('click', function() {
+noButton.addEventListener('click', function () {
     alert('没关系，我会努力让你更爱我，再给我点时间哦！');
     content.style.animation ='shake 0.5s';
     setTimeout(() => {
@@ -38,19 +38,62 @@ noButton.addEventListener('click', function() {
 
 function startFireworks() {
     const fireworks = document.getElementById('fireworks');
-    for (let i = 0; i < 20; i++) {
-        const firework = document.createElement('div');
-        firework.classList.add('firework');
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * window.innerHeight;
-        firework.style.left = `${x}px`;
-        firework.style.top = `${y}px`;
-        fireworks.appendChild(firework);
+    for (let i = 0; i < 30; i++) {
         setTimeout(() => {
-            firework.style.animation = 'explode 1s ease-out';
-            setTimeout(() => {
-                fireworks.removeChild(firework);
-            }, 1000);
+            const firework = createFirework();
+            fireworks.appendChild(firework);
+            explodeFirework(firework);
         }, i * 200);
     }
-}    
+}
+
+function createFirework() {
+    const firework = document.createElement('div');
+    firework.classList.add('firework');
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    firework.style.left = `${x}px`;
+    firework.style.top = `${y}px`;
+    const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF33E3', '#33FFF6'];
+    firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    return firework;
+}
+
+function explodeFirework(firework) {
+    const particles = 20;
+    for (let i = 0; i < particles; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('firework-particle');
+        particle.style.left = '0';
+        particle.style.top = '0';
+        const angle = (i / particles) * 360;
+        const distance = Math.random() * 50 + 20;
+        const x = Math.cos(angle * (Math.PI / 180)) * distance;
+        const y = Math.sin(angle * (Math.PI / 180)) * distance;
+        particle.style.transform = `translate(${x}px, ${y}px)`;
+        particle.style.backgroundColor = firework.style.backgroundColor;
+        firework.appendChild(particle);
+        setTimeout(() => {
+            particle.style.opacity = '0';
+            setTimeout(() => {
+                particle.remove();
+            }, 500);
+        }, 100);
+    }
+    setTimeout(() => {
+        firework.remove();
+    }, 600);
+}
+
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+      .firework-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+`);    

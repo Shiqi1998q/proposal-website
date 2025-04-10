@@ -5,6 +5,7 @@ body {
     overflow: hidden;
     transition: background-color 1s ease;
 }
+
 #fireworks {
     position: fixed;
     top: 0;
@@ -13,30 +14,75 @@ body {
     height: 100%;
     pointer-events: none;
 }
+
 button {
     transition: transform 0.3s ease;
 }
+
 button:hover {
     transform: scale(1.1);
 }
+
 @keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.2; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
+
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
 }
+
 .firework {
     position: absolute;
     width: 4px;
@@ -45,16 +91,19 @@ button:hover {
     border-radius: 50%;
     opacity: 0;
 }
+
 @keyframes explode {
     0% {
         opacity: 1;
         transform: scale(0);
     }
+
     100% {
         opacity: 0;
         transform: scale(10);
     }
 }
+
 .custom-alert {
     position: fixed;
     top: 0;
@@ -66,30 +115,62 @@ button:hover {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    animation: fadeIn 0.5s ease;
 }
 
 .custom-alert-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    padding: 40px;
+    border-radius: 20px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    animation: zoomIn 0.5s ease forwards;
 }
 
 .custom-alert-text {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .custom-alert-close {
-    background-color: #007BFF;
-    color: white;
+    background-color: #fff;
+    color: #fda085;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 15px 30px;
+    border-radius: 30px;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .custom-alert-close:hover {
-    background-color: #0056b3;
+    background-color: #f6d365;
+    color: #fff;
+    transform: scale(1.1);
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}    
