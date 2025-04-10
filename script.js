@@ -5,6 +5,16 @@ const body = document.body;
 const celebrationMusic = document.getElementById('celebrationMusic');
 
 yesButton.addEventListener('click', function () {
+    // 禁用我愿意按钮
+    yesButton.disabled = true;
+    yesButton.style.opacity = '0.5';
+    yesButton.style.backgroundColor = '#00FF00';
+    yesButton.style.boxShadow = '0 0 10px #00FF00';
+
+    // 禁用再考虑下按钮
+    noButton.disabled = true;
+    noButton.style.opacity = '0.5';
+
     // 创建一个自定义的弹窗元素
     const customAlert = document.createElement('div');
     customAlert.classList.add('custom-alert');
